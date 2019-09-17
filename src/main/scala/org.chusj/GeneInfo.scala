@@ -4,10 +4,10 @@ import redis.clients.jedis.Jedis
 
 import scala.io.Source
 
-object geneInfo extends App {
+object GeneInfo extends App {
 
 
-  val jedis = new Jedis()
+  val jedisClient = new Jedis()
   val filename = args(1)
   for (line <- Source.fromFile(filename).getLines) {
     if (!line.startsWith("#") ) {
@@ -25,23 +25,23 @@ object geneInfo extends App {
         val geneId = words(10)
         val name = words(11)
 
-        jedis.sadd(s"id:$ensemblId",s"name:$name" )
-        jedis.sadd(s"id:$ensemblId",s"map_location:$map_location" )
-        jedis.sadd(s"id:$ensemblId",s"type:$typeOfGene" )
-        jedis.sadd(s"id:$ensemblId",s"desc:$description" )
+        jedisClient.sadd(s"id:$ensemblId",s"name:$name" )
+        jedisClient.sadd(s"id:$ensemblId",s"map_location:$map_location" )
+        jedisClient.sadd(s"id:$ensemblId",s"type:$typeOfGene" )
+        jedisClient.sadd(s"id:$ensemblId",s"desc:$description" )
 
         symbols.foreach( u => {
           if (!u.isEmpty) {
             println(u)
-            jedis.sadd(s"id:$ensemblId",s"gene:$u" )
-            jedis.sadd(s"gene:$u", s"id:$ensemblId")
+            jedisClient.sadd(s"id:$ensemblId",s"gene:$u" )
+            jedisClient.sadd(s"gene:$u", s"id:$ensemblId")
           }
         }  )
       }
     }
   }
 
-  jedis.save()
-  jedis.close()
+  jedisClient.save()
+  jedisClient.close()
 
 }
