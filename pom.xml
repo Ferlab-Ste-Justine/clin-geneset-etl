@@ -96,7 +96,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>org.chusj.main</mainClass>
+                            <mainClass>org.chusj.Main</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -134,7 +134,7 @@
 
         <dependency>
             <groupId>org.scala-lang.modules</groupId>
-            <artifactId>scala-xml_2.13</artifactId>
+            <artifactId>scala-xml_2.12</artifactId>
             <version>1.2.0</version>
         </dependency>
         <dependency>
