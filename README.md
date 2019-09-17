@@ -44,4 +44,22 @@ mvn clean install
 To execute etl with geneInfo (populate Redis with the geneInfo file (gene alias and gene info):
 ```
 java -jar target/geneset-etl-1.0-SNAPSHOT-jar-with-dependencies.jar geneInfo Homo_sapiens.gene_info.txt
+java -jar target/geneset-etl-1.0-SNAPSHOT-jar-with-dependencies.jar hpo ALL_SOURCES_ALL_FREQUENCIES_genes_to_phenotype.txt
+java -jar target/geneset-etl-1.0-SNAPSHOT-jar-with-dependencies.jar orpha en_product6.xml
+
 ```
+
+###  Source of Data
+
+#### HPO - Human Phenotype Ontology
+
+http://compbio.charite.de/jenkins/job/hpo.annotations.monthly/lastSuccessfulBuild/artifact/annotation/ALL_SOURCES_ALL_FREQUENCIES_genes_to_phenotype.txt
+
+#### Orphanet
+##### RARE DISEASES WITH THEIR ASSOCIATED GENES:
+
+http://www.orphadata.org/cgi-bin/index.php
+
+#### Radboudumc
+
+

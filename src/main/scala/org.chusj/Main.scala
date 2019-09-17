@@ -4,7 +4,7 @@ package org.chusj
 object Main extends App {
 
   val etlToRun = args(0)
-  val filePresent = args.length > 2 && !args(1).isEmpty
+  val filePresent = args.length >= 2 && !args(1).isEmpty
 
   etlToRun match {
     case "geneInfo" if filePresent => GeneInfo.main(args)

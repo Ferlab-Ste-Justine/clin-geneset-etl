@@ -1,6 +1,5 @@
 package org.chusj
 
-import org.chusj.Hpo.jedisClient
 import redis.clients.jedis.Jedis
 
 import scala.xml.XML
@@ -12,33 +11,26 @@ object Orphanet extends App {
 
   for {
     disorder  <- doc \\ "DisorderList" \\ "Disorder"
+    orphaNumber <- disorder \ "OrphaNumber"
+    name <- disorder \ "Name"
+    genes <-  disorder \ "DisorderGeneAssociationList" \ "DisorderGeneAssociation" \ "Gene"
+    externalReferenceList = genes \ "ExternalReferenceList"
+    extRefMap = externalReferenceList \ "ExternalReference"
+    eId = extRefMap.find( node => ( node \ "Source").text == "Ensembl" ).map(_ \ "Reference")
 
   } yield {
-    val orphaNumber = disorder \ "OrphaNumber"
-    val name = disorder \ "Name"
 
     println(s"DId=${disorder\@"id"}-ON=$orphaNumber-$name")
 
-
-    for {
-      genes <-  disorder \ "DisorderGeneAssociationList" \ "DisorderGeneAssociation" \ "Gene"
-    } yield {
-      //val symbol = genes \ "Symbol"
-      val externalReferenceList = genes \ "ExternalReferenceList"
-      val extRefMap = externalReferenceList \ "ExternalReference"
-      val eId = extRefMap.find( node => ( node \ "Source").text == "Ensembl" ).map(_ \ "Reference")
-
-      eId.map(_.text) match {
-        case Some(s) => saveToRedis(s,s"Orph:${orphaNumber.text},${name.text}")
-        case None => println("no Ensembl id")
-      }
+    eId.map(_.text) match {
+      case Some(s) => saveToRedis(s,s"Orph:${orphaNumber.text},${name.text}")
+      case None => println("no Ensembl id")
     }
 
     jedisClient.save()
     jedisClient.close()
 
   }
-
 
   def saveToRedis(ensId:String, panel: String): Unit = {
     println(s"\tid:$ensId-panel=$panel")

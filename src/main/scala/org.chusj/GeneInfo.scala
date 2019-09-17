@@ -17,7 +17,8 @@ object GeneInfo extends App {
       if (!"-".equals(ensemblId) && ensemblId.startsWith("EN")) {
         println(ensemblId)
 
-        val symbols =  words(4).replaceAll("-", "").trim.split("[|]", 0).toList.::(words(2))
+        val symbol = words(2)
+        val alias = words(4).replaceAll("-", "").trim.split("[|]", 0).toList
 
         val map_location = words(7)
         val description = words(8)
@@ -25,15 +26,17 @@ object GeneInfo extends App {
         val geneId = words(10)
         val name = words(11)
 
+        jedisClient.sadd(s"id:$ensemblId",s"symbol:$symbol" )
         jedisClient.sadd(s"id:$ensemblId",s"name:$name" )
         jedisClient.sadd(s"id:$ensemblId",s"map_location:$map_location" )
         jedisClient.sadd(s"id:$ensemblId",s"type:$typeOfGene" )
         jedisClient.sadd(s"id:$ensemblId",s"desc:$description" )
+        jedisClient.sadd(s"gene:$symbol", s"id:$ensemblId")
 
-        symbols.foreach( u => {
+        alias.foreach( u => {
           if (!u.isEmpty) {
             println(u)
-            jedisClient.sadd(s"id:$ensemblId",s"gene:$u" )
+            jedisClient.sadd(s"id:$ensemblId",s"alias:$u" )
             jedisClient.sadd(s"gene:$u", s"id:$ensemblId")
           }
         }  )
