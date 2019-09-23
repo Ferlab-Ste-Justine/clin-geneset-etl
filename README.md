@@ -62,4 +62,10 @@ http://www.orphadata.org/cgi-bin/index.php
 
 #### Radboudumc
 
+- Download all genes in PDF format
+https://issuu.com/radboudumc/docs/genelist_dg216_nijmegen?fr=sMDA4NzU2NTY
+- convert PDF to excel
+https://smallpdf.com/fr/pdf-en-excel
+- Convert to CSV (tab delimited)
+Note: There is 6 tab to be saved as
 

@@ -23,10 +23,11 @@ object GeneInfo extends App {
         val map_location = words(7)
         val description = words(8)
         val typeOfGene = words(9)
-        val geneId = words(10)
+        val geneId = words(1)
         val name = words(11)
 
         jedisClient.sadd(s"id:$ensemblId",s"symbol:$symbol" )
+        jedisClient.sadd(s"id:$ensemblId",s"geneid:$geneId" )
         jedisClient.sadd(s"id:$ensemblId",s"name:$name" )
         jedisClient.sadd(s"id:$ensemblId",s"map_location:$map_location" )
         jedisClient.sadd(s"id:$ensemblId",s"type:$typeOfGene" )
