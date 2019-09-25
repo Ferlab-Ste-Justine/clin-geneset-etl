@@ -35,18 +35,31 @@ smembers id:ENSG00000121410
 ```
 
 
-### To run etl 
-#### geneInfo
-To compile and build runtime:
+### To run etl
+#### To compile and build runtime:
 ```
 mvn clean install
-```
+``` 
+#### geneInfo
+
 To execute etl with geneInfo (populate Redis with the geneInfo file (gene alias and gene info):
 ```
 java -jar target/geneset-etl-1.0-SNAPSHOT-jar-with-dependencies.jar geneInfo Homo_sapiens.gene_info.txt
+```
+#### HPO
+To execute etl with hpo (populate Redis with the HPO file (Gene to HPO panel)
+```
 java -jar target/geneset-etl-1.0-SNAPSHOT-jar-with-dependencies.jar hpo ALL_SOURCES_ALL_FREQUENCIES_genes_to_phenotype.txt
+```
+#### Orphanet
+To execute etl with orphanets (populate Redis with the orphanets xml file (ensembl to orphanet panel)
+```
 java -jar target/geneset-etl-1.0-SNAPSHOT-jar-with-dependencies.jar orpha en_product6.xml
-
+```
+#### Radboudumc
+To execute etl with radboudumc (populate Redis with the radboudumc genes panels files in pdf (Gene to Radboudumc panel)
+```
+java -jar target/geneset-etl-1.0-SNAPSHOT-jar-with-dependencies.jar rad RAD_Files _DG216.pdf
 ```
 
 ###  Source of Data
@@ -62,10 +75,8 @@ http://www.orphadata.org/cgi-bin/index.php
 
 #### Radboudumc
 
-- Download all genes in PDF format
-https://issuu.com/radboudumc/docs/genelist_dg216_nijmegen?fr=sMDA4NzU2NTY
-- convert PDF to excel
-https://smallpdf.com/fr/pdf-en-excel
-- Convert to CSV (tab delimited)
-Note: There is 6 tab to be saved as
+- Download all genes panels in PDF format
+https://www.radboudumc.nl/en/patientenzorg/onderzoeken/exome-sequencing-diagnostics/information-for-referrers/exome-panels
+
+#### note: (25 Sep 2019) Hemostatic/Thrombotic disorders (150 genes) version 216 cannot be downloaded from their platform. So version 215 was downloaded (145 genes) 
 

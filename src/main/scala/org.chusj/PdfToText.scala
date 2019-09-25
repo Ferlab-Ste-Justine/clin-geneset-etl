@@ -9,11 +9,10 @@ import scala.collection.mutable.ListBuffer
 import scala.util.Try
 
 
-object PdfToText {
+object PdfToText extends App {
 
-  //System.setProperty("java.awt.headless", "true")
 
-  def main(args: Array[String]) {
+
     if (args.length != 3) printUsageAndExit()
 
     val startPage = args(0).toInt
@@ -29,49 +28,8 @@ object PdfToText {
 
 
 
-//    text match {
-//      case Some(s) => {
-//        println(s"length=${s.length}")
-//        //println(s)
-//
-//        val line = s.split("\n")
-//        line.foreach(l => {
-//          //println(l)
-//          val word = l.split(" ")
-////          word.foreach( word => {
-////            print(s"'${word.trim}' ")
-////          })
-//
-//
-//          val test1: Try[Int] = Try {
-//            word(1).split(",")(0).toInt
-//          }
-//          val test2: Try[Int] = Try {
-//            word(2).split("\\.")(0).toInt
-//          }
-//          if (test1.isSuccess && test2.isSuccess) {
-//            println(s"Found gene:${word(0)}")
-//            geneCount += 1;
-//          }
-//
-//          println("---")
-//        }
-//        )
-//
-//
-//      }
-//      case None => println("")
-//    }
-//    println(s"geneCount=$geneCount")
-
-
-
-  }
-
   def getListOfGeneFromPdf(fileName : String) : ListBuffer[String] = {
-
-    getGeneList(getTextFromPdf(0, 20, fileName))
-
+    getGeneList(getTextFromPdf(0, 100, fileName))
   }
 
   def printUsageAndExit() {
@@ -82,19 +40,24 @@ object PdfToText {
   }
 
   def getTextFromPdf(startPage: Int, endPage: Int, filename: String): Option[String] = {
+
+    // var because we need to keep a reference outside try{ to close the document at the end of processing
+    var pdf : PDDocument = null
+
     try {
-      val pdf = PDDocument.load(new File(filename))
+      pdf = PDDocument.load(new File(filename))
       val stripper = new PDFTextStripper
       stripper.setStartPage(startPage)
       stripper.setEndPage(endPage)
       Some(stripper.getText(pdf))
     } catch {
       case t: Throwable =>
-        t.printStackTrace()
+        System.err.println(s"file $filename cannot be processed >> ${t.getMessage}")
         None
+    } finally {
+      if (pdf != null) pdf.close()
     }
   }
-
 
   def getGeneList(text:Option[String]) : ListBuffer[String] = {
     var strLst = new ListBuffer[String]
@@ -105,10 +68,6 @@ object PdfToText {
         line.foreach(l => {
           //println(l)
           val word = l.split(" ")
-          //          word.foreach( word => {
-          //            print(s"'${word.trim}' ")
-          //          })
-
 
           val test1: Try[Int] = Try {
             word(1).split(",")(0).toInt
@@ -116,20 +75,17 @@ object PdfToText {
           val test2: Try[Int] = Try {
             word(2).split("\\.")(0).toInt
           }
-          if (test1.isSuccess && test2.isSuccess) {
-            //println(s"Found gene:${word(0)}")
+          val test3: Try[Int] = Try {
+            word(3).split("\\.")(0).toInt
+          }
+          if (test1.isSuccess && test2.isSuccess && test3.isSuccess) {
             strLst += word(0)
           }
+        })
 
-          //println("---")
-        }
-        )
-        //println(strLst)
         strLst
 
-
       case None => strLst
-
 
     }
 
