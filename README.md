@@ -64,6 +64,9 @@ java -jar target/geneset-etl-1.0-SNAPSHOT-jar-with-dependencies.jar rad RAD_File
 
 ###  Source of Data
 
+#### NCBI
+ftp://ftp.ncbi.nih.gov/gene/DATA/GENE_INFO/Mammalia/Homo_sapiens.gene_info.gz
+
 #### HPO - Human Phenotype Ontology
 
 http://compbio.charite.de/jenkins/job/hpo.annotations.monthly/lastSuccessfulBuild/artifact/annotation/ALL_SOURCES_ALL_FREQUENCIES_genes_to_phenotype.txt
