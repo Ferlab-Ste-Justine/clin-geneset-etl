@@ -23,7 +23,10 @@ redis-cli
 > ping
 the redis should answer PONG
 ```
-
+To clean Redis run the following command on the cli:
+```
+flushall
+```
 
 to check for an alias and get ensembl id for that gene:
 ```
@@ -81,5 +84,6 @@ http://www.orphadata.org/cgi-bin/index.php
 - Download all genes panels in PDF format
 https://www.radboudumc.nl/en/patientenzorg/onderzoeken/exome-sequencing-diagnostics/information-for-referrers/exome-panels
 
-#### note: (25 Sep 2019) Hemostatic/Thrombotic disorders (150 genes) version 216 cannot be downloaded from their platform. So version 215 was downloaded (145 genes) 
-
+#### note: (Feb 2020) 3 new panels were added
+##### Liver, SHHM, Hereditary Bone Marrow Failure 
+##### on Rad website, when we click on Muscle disorders, the Intelectual disorders shown instead... So, I'm running with a copy of 216 instead...

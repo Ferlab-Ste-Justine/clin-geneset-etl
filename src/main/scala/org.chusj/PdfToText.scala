@@ -69,8 +69,11 @@ object PdfToText extends App {
           //println(l)
           val word = l.split(" ")
 
-          val test1: Try[Int] = Try {
+          val test1Comma: Try[Int] = Try {
             word(1).split(",")(0).toInt
+          }
+          val test1Dot: Try[Int] = Try {
+            word(1).split("\\.")(0).toInt
           }
           val test2: Try[Int] = Try {
             word(2).split("\\.")(0).toInt
@@ -78,7 +81,7 @@ object PdfToText extends App {
           val test3: Try[Int] = Try {
             word(3).split("\\.")(0).toInt
           }
-          if (test1.isSuccess && test2.isSuccess && test3.isSuccess) {
+          if ( (test1Comma.isSuccess || test1Dot.isSuccess) && test2.isSuccess && test3.isSuccess) {
             strLst += word(0)
           }
         })
@@ -92,10 +95,5 @@ object PdfToText extends App {
 
 
   }
-
-
-
-
-
 
 }

@@ -7,39 +7,42 @@ object Radboudumc extends App {
 
 
   val radMap: Map[String, String] = Map(
-    "AKI" -> "AKI",
+
     "ALS" -> "ALS",
-    "CILIOPATHIES" -> "CILIOPATHIES",
-    "CONGENITAL HEART DISEASE" -> "CONGENITAL HEART DISEASE",
-    "CRANIOFACIAL ANOMALIES" -> "CRANIOFACIAL ANOMALIES",
-    "DISORDERS OF SEX DEVELOPMENT" -> "DISORDERS OF SEX DEVELOPMENT PANEL",
-    "DYSKERATOSIS CONGENITA" -> "DKC",
-    "EPILEPSY" -> "EPILEPSY PANEL",
-    "HEARING IMPAIRMENT" -> "HEARING IMPAIRMENT",
-    "HEART" -> "HEART GENE PANEL",
-    "HEMOSTATIC/THROMBOTIC" -> "HEMOSTATICDISORDERS",
-    "HEREDITARY CANCER" -> "HEREDITARY CANCER PANEL",
-    "HYPOGONADOTROPIC HYPOGONADISM" -> "HYPOGONADOTROPIC HYPOGONADISM PANEL",
-    "INTELLECTUAL DISABILITY" -> "INTELLECTUAL DISABILITY",
-    "IRON METABOLISM" -> "IRON METABOLISM PANEL",
-    "MENDELIOME GENE" -> "MENDELIOME GENE PANEL",
-    "METABOLIC DISORDERS" -> "METABOLIC DISORDERS",
-    "MITOCHONDRIAL DISORDERS" -> "MITOCHONDRIAL DISORDERS N",
-    "MOVEMENT DISORDERS" -> "MOVEMENTDISORDERS",
-    "MUSCLE DISORDERS" -> "MUSCLE DISORDERS",
-    "NEUROPATHIES PANEL" -> "NEUROPATHIES PANEL",
-    "PARKINSON" -> "PARKINSON",
-    "PRECONCEPTION SCREENING" -> "PCS",
-    "PRIMARY IMMUNODEFICIENCIES" -> "PRIMARY IMMUNODEFICIENCIES",
-    "RENAL DISORDERS" -> "RENAL DISORDERS",
-    "SHORT STATURE AND SKELETAL DYSPLASIA" -> "SHORT STATURE AND SKELETAL DYSPLASIA",
-    "SKIN DISORDERS" -> "SKIN DISORDERS",
-    "VISION DISORDERS" -> "VISION DISORDERS"
+    "Ciliopathies" -> "CILIOPATHIES",
+    "Congenital Hearth Disease" -> "CONGENITAL-HEART-DISEASE",
+    "Cranofacial Anomalies" -> "CRANIOFACIAL-ANOMALIES-PANEL",
+    "Disorders Of Sex Development" -> "DISORDERS-OF-SEX-DEVELOPMENT-PANEL",
+    "Dyskeratosis Congenita" -> "DKC",
+    "Epilepsy" -> "EPILEPSY-PANEL",
+    "Fetal Akinesia" -> "AKI",
+    "Hearing Impairment" -> "HEARING-IMPAIRMENT",
+    "Hearth" -> "HEART-GENE-PANEL",
+    "Hemostatic/Thrombotic" -> "HEMOSTATICDISORDERS",
+    "Hereditary Cancer" -> "HEREDITARY-CANCER-PANEL",
+    "Hereditary Bone Marrow Failure" -> "HEREDITARYBONEMARROWFAILURE",
+    "Hypogonadotropic Hypogonadism" -> "HYPOGONADOTROPIC-HYPOGONADISM-PANEL",
+    "Intelectual Disability" -> "INTELLECTUAL-DISABILITY",
+    "Iron Metabolism" -> "IRON-METABOLISM-PANEL",
+    "Liver Disorders" -> "LIVER",
+    "Mendeloime Gene" -> "MENDELIOME-GENE-PANEL",
+    "Mitochondrial Disorders" -> "MITOCHONDRIAL-DISORDERS-N",
+    "Movement Disorders" -> "MOVEMENTDISORDERS",
+    "Muscle Disorders" -> "MUSCLE-DISORDERS",
+    "Neuropathies Panel" -> "NEUROPATHIES-PANEL",
+    "Parkinson" -> "PARKINSON",
+    "Preconception Screening" -> "PCS",
+    "Primary Immunodeficiencies" -> "PRIMARY-IMMUNODEFICIENCIES",
+    "Renal Disorders" -> "RENAL-DISORDERS",
+    "Sonic Hedgehog Medulloblastoma" -> "SHHM",
+    "Short Stature And Skeletal Dysplasia" -> "SHORT-STATURE-AND-SKELETAL-DYSPLASIA",
+    "Skin Disorders" -> "SKIN-DISORDERS",
+    "Vision Disorders" -> "VISIONDISORDERS"
 
     )
 
   val newArgs: Array[String] = if (args.length == 0 ) {
-    Array("rad", "RAD_Files", "_DG216.pdf")
+    Array("rad", "RAD_Files", "_DG217.pdf")
   } else {
     args
   }
@@ -65,7 +68,6 @@ object Radboudumc extends App {
 
         jedisClient.sadd(s"$ensId",s"Rad:$radboudumcGenePanelName" )
       } )
-
 
     })
 
