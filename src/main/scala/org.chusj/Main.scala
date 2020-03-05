@@ -11,6 +11,7 @@ object Main extends App {
     case "hpo" if argumentsPresent => Hpo.main(args)
     case "orpha" if argumentsPresent => Orphanet.main(args)
     case "rad" if argumentsPresent => Radboudumc.main(args)
+    case "etl" if argumentsPresent => ETL.main(args)
     case _ =>
       println("missing or wrong etl paramater(s)")
       println(
