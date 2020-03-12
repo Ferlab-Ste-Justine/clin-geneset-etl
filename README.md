@@ -62,9 +62,13 @@ java -jar target/geneset-etl-1.0-SNAPSHOT-jar-with-dependencies.jar orpha en_pro
 #### Radboudumc
 To execute etl with radboudumc (populate Redis with the radboudumc genes panels files in pdf (Gene to Radboudumc panel)
 ```
-java -jar target/geneset-etl-1.0-SNAPSHOT-jar-with-dependencies.jar rad RAD_Files _DG216.pdf
+java -jar target/geneset-etl-1.0-SNAPSHOT-jar-with-dependencies.jar rad RAD_Files _DG217.pdf
 ```
-
+#### ETL
+To execute etl with radboudumc (populate Redis with the radboudumc genes panels files in pdf (Gene to Radboudumc panel)
+```
+java -jar target/geneset-etl-1.0-SNAPSHOT-jar-with-dependencies.jar etl
+```
 ###  Source of Data
 
 #### NCBI
