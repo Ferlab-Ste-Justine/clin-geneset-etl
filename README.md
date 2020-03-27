@@ -43,31 +43,26 @@ smembers id:ENSG00000121410
 ```
 mvn clean install
 ``` 
-#### geneInfo
+#### Step 1 geneInfo
 
 To execute etl with geneInfo (populate Redis with the geneInfo file (gene alias and gene info):
 ```
 java -jar target/geneset-etl-1.0-SNAPSHOT-jar-with-dependencies.jar geneInfo Homo_sapiens.gene_info.txt
 ```
-#### HPO
+#### Step 2 HPO
 To execute etl with hpo (populate Redis with the HPO file (Gene to HPO panel)
 ```
 java -jar target/geneset-etl-1.0-SNAPSHOT-jar-with-dependencies.jar hpo ALL_SOURCES_ALL_FREQUENCIES_genes_to_phenotype.txt
 ```
-#### Orphanet
+#### Step 3 Orphanet
 To execute etl with orphanets (populate Redis with the orphanets xml file (ensembl to orphanet panel)
 ```
 java -jar target/geneset-etl-1.0-SNAPSHOT-jar-with-dependencies.jar orpha en_product6.xml
 ```
-#### Radboudumc
+#### Step 4 Radboudumc
 To execute etl with radboudumc (populate Redis with the radboudumc genes panels files in pdf (Gene to Radboudumc panel)
 ```
 java -jar target/geneset-etl-1.0-SNAPSHOT-jar-with-dependencies.jar rad RAD_Files _DG217.pdf
-```
-#### ETL
-To execute etl with radboudumc (populate Redis with the radboudumc genes panels files in pdf (Gene to Radboudumc panel)
-```
-java -jar target/geneset-etl-1.0-SNAPSHOT-jar-with-dependencies.jar etl
 ```
 ###  Source of Data
 

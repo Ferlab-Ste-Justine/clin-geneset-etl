@@ -11,6 +11,7 @@ object Orphanet extends App {
 
   for {
     disorder  <- doc \\ "DisorderList" \\ "Disorder"
+    disorderId = disorder\@"id"
     orphaNumber <- disorder \ "OrphaNumber"
     name <- disorder \ "Name"
     genes <-  disorder \ "DisorderGeneAssociationList" \ "DisorderGeneAssociation" \ "Gene"
@@ -20,10 +21,11 @@ object Orphanet extends App {
 
   } yield {
 
-    println(s"DId=${disorder\@"id"}-ON=$orphaNumber-$name")
+    println(s"DId=${disorderId}-ON=$orphaNumber-$name")
+
 
     eId.map(_.text) match {
-      case Some(s) => saveToRedis(s,s"Orph:${orphaNumber.text},${name.text}")
+      case Some(s) => saveToRedis(s,s"Orph:${orphaNumber.text},${name.text};did:${disorderId}")
       case None => println("no Ensembl id")
     }
 
