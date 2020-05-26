@@ -64,6 +64,13 @@ To execute etl with radboudumc (populate Redis with the radboudumc genes panels 
 ```
 java -jar target/geneset-etl-1.0-SNAPSHOT-jar-with-dependencies.jar rad RAD_Files _DG217.pdf
 ```
+
+#### Step 5 Omim
+To execute etl with Omim (populate Redis with the omim genes maps file in txt (Gene -> Omim Phenotype + transmission mode)
+```
+java -jar target/geneset-etl-1.0-SNAPSHOT-jar-with-dependencies.jar omim genemap2.txt
+```
+
 ###  Source of Data
 
 #### NCBI
@@ -83,6 +90,18 @@ http://www.orphadata.org/cgi-bin/index.php
 - Download all genes panels in PDF format
 https://www.radboudumc.nl/en/patientenzorg/onderzoeken/exome-sequencing-diagnostics/information-for-referrers/exome-panels
 
-#### note: (Feb 2020) 3 new panels were added
-##### Liver, SHHM, Hereditary Bone Marrow Failure 
-##### on Rad website, when we click on Muscle disorders, the Intelectual disorders shown instead... So, I'm running with a copy of 216 instead...
+##### note1: (Feb 2020) 3 new panels were added : Liver, SHHM, Hereditary Bone Marrow Failure 
+##### note2: on Rad website, when we click on Muscle disorders, the Intelectual disorders shown instead... So, I'm running with a copy of 216 instead...
+
+
+#### Omim  (May 2020)
+
+https://omim.org
+
+- Download all the 4 Omim databases files:
+    - mim2gene.txt
+    - mimTitles.txt
+    - genemap2.txt
+    - morbidmap.tx
+
+

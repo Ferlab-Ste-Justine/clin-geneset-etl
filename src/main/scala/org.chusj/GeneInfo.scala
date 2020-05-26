@@ -46,6 +46,7 @@ object GeneInfo extends App {
 
         for (omimId <- omim) {
           jedisClient.sadd(s"id:$ensemblId",s"omim:$omimId" )
+          jedisClient.sadd(s"omim:$omimId", s"id:$ensemblId" )
         }
         for (hgncId <- hgnc) {
           jedisClient.sadd(s"id:$ensemblId",s"hgnc:$hgncId" )
@@ -66,9 +67,8 @@ object GeneInfo extends App {
             jedisClient.sadd(s"gene:$u", s"id:$ensemblId")
           }
         }  )
-        }
       }
-
+    }
   }
 
   geneInfoSource.close()

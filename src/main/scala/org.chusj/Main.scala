@@ -11,7 +11,7 @@ object Main extends App {
     case "hpo" if argumentsPresent => Hpo.main(args)
     case "orpha" if argumentsPresent => Orphanet.main(args)
     case "rad" if argumentsPresent => Radboudumc.main(args)
-    case "etl" => ETL.main(args)
+    case "omim" if argumentsPresent => Omim.main(args)
     case _ =>
       println("missing or wrong etl paramater(s)")
       println(
@@ -20,7 +20,7 @@ object Main extends App {
           |  hpo ALL_SOURCES_ALL_FREQUENCIES_genes_to_phenotype.txt OR
           |  orpha en_product6.xml
           |  rad foldersWereRadPDFFilesIs extension (i.e.) RAD_Files _DG217.pdf
-          |  etl
+          |  omim genemap2.txt
         """.stripMargin)
 
   }
